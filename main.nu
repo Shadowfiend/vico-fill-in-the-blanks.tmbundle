@@ -1,23 +1,3 @@
-(function center-current-line ()
-  (let ((text-view (current-text))
-        (null-range '(NSNotFound 0)))
-    (let ((current-line (text-view currentLine))
-          (layout-manager (text-view layoutManager))
-          (text-container (text-view textContainer))
-          (text-storage (text-view textStorage)))
-      (set character-index (text-storage locationForStartOfLine:(text-view currentLine)))
-      (set character-rect
-        (let (line-rect (layout-manager lineFragmentRectForGlyphAtIndex:(layout-manager glyphIndexForCharacterAtIndex:character-index) effectiveRange:nil))
-          line-rect))
-      (set desired-scroll-top
-        (let ((line-top (head (tail character-rect)))
-              (line-height (head (tail (tail (tail character-rect)))))
-              (view-height (head (tail (tail (tail (text-view visibleRect)))))))
-          (+ (- line-top (/ view-height 2)) (/ line-height 2))))
-      (let ((clip-view ((text-view enclosingScrollView) contentView))
-            (scroll-top desired-scroll-top))
-        (clip-view scrollToPoint:`(0 ,scroll-top))))))
-
 (function align-current-line-with (scroll-top-calculator)
   (do ()
     (let ((text-view (current-text))
