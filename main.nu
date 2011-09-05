@@ -23,8 +23,10 @@
             (list (head (tail character-rect)) (head (tail (tail (tail character-rect)))))
             (text-view visibleRect)))
         (let ((clip-view ((text-view enclosingScrollView) contentView))
+              (scroll-view (text-view enclosingScrollView))
               (scroll-top desired-scroll-top))
-          (clip-view scrollToPoint:(clip-view constrainScrollPoint:`(0 ,scroll-top))))))))
+          (clip-view scrollToPoint:(clip-view constrainScrollPoint:`(0 ,scroll-top)))
+          (scroll-view reflectScrolledClipView:clip-view))))))
 
 (let ((centering-scroll-top-calculator
         (do (line-top-and-height view-rect)
