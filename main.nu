@@ -18,14 +18,13 @@
         (set character-rect
           (let (line-rect (layout-manager lineFragmentRectForGlyphAtIndex:(layout-manager glyphIndexForCharacterAtIndex:character-index) effectiveRange:nil))
             line-rect))
-        (puts "booyan")
         (set desired-scroll-top
           (scroll-top-calculator
             (list (head (tail character-rect)) (head (tail (tail (tail character-rect)))))
             (text-view visibleRect)))
         (let ((clip-view ((text-view enclosingScrollView) contentView))
               (scroll-top desired-scroll-top))
-          (clip-view scrollToPoint:`(0 ,scroll-top)))))))
+          (clip-view scrollToPoint:(clip-view constrainScrollPoint:`(0 ,scroll-top))))))))
 
 (let ((centering-scroll-top-calculator
         (do (line-top-and-height view-rect)

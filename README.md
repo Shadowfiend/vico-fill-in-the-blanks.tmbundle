@@ -9,12 +9,18 @@ to throw it in here.
 Things Implemented
 ------------------
 
-* zz -- zz centers the scroll on the current line.
+* zz/zt/zb -- zz centers the scroll on the current line, zt puts it at the top
+  of the screen, zb at the bottom.
   
-  This implementation one-ups the vim implementation by allowing you to center
-  both the top and bottom lines on the screen (i.e., by adding blank space above
-  and below the beginning and end lines if needed to center the line
-  appropriately). That's more by accident than anything else.
+  This implementation constrains the scroll by the top and bottom of the scroll
+  document. Usually vim lets you scroll past the end of the document to properly
+  align the line in the center, but doing that here messes with repeated
+  invocations of zz because I'm pretty sure scrolling past the end of a view is
+  something Cocoa isn't a fan of.
+
+  zt and zb are both constrained, as well. All of these commands will scroll as
+  far in the necessary direction as possible, so they'll get as close to your
+  requested position as possible without scrolling off the end of the view.
 
 License
 -------
