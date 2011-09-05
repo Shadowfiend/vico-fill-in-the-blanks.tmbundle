@@ -1,3 +1,11 @@
+; Aligns the current line, calculating the line's position and the
+; view's dimensions and passing these to scroll-top-calculator, which
+; should be a function or block that calculates a scroll top that is
+; then used to scroll the view.
+;
+; scroll-top-calculator is passed two parameters:
+;  - (line-top line-height)
+;  - (view-x view-y view-width view-height) (the visibleRect of the text view)
 (function align-current-line-with (scroll-top-calculator)
   (do ()
     (let ((text-view (current-text))
